@@ -20,6 +20,7 @@ namespace Backend.States
         public StateGraph(State s)
         {
             start = s;
+            states = new HashSet<State>();
             queue = new Queue<State>();
         }
         /// <summary>
@@ -28,7 +29,7 @@ namespace Backend.States
         /// states that kill the player will be dropped
         /// </summary>
         /// <param name="s">current state to derive next states from</param>
-        public void GenerateNextStates(State s)
+        private void GenerateNextStates(State s)
         {
 
         }

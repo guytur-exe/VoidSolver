@@ -1,4 +1,5 @@
-﻿using Backend.Board.Tiles;
+﻿using Backend.Board;
+using Backend.Board.Tiles;
 using Backend.Units;
 using System;
 using System.Collections;
@@ -10,17 +11,51 @@ using System.Threading.Tasks;
 
 namespace Backend.States
 {
-    internal class State
+    internal record struct State
     {
-        private ITile[][] tiles;
+
+        private byte heldTile;
+        private char? input;
+
+        private Board14x8 blanks;
+        private Board14x8 glasses;
+        private Board14x8 oneTimes;
+        private Board14x8 zeroTimes;
+        private Board14x8 pentagrams;
+        private Board14x8 buttons;
+        
         private Player player;
-        private List<Monster>? monsters;
-        private List<Shade>? shades;
+
+        private Monster0D[] hands;
+        private Monster0D[] polygons;
+        private Monster0D[] shades;
+        private Monster0D[] smiles;
+        private Monster0D[] whiteGolems;
+        private Monster0D[] grayGolems;
+        private Monster0D[] blackGolems;
+
+        private Monster2D[] leaches;
+        private Monster2D[] bugs;
+
+        private Monster4D[] bulls;
+
+
         private List<Statue>? statues;
 
         private State? previus;
-        private char? input;
-        private bool visited;
+
+        public enum Tiles
+        {
+            Blank,
+            Glass,
+            OneTime,
+            ZeroTime,
+            Pentagram,
+            OpenStairs,
+            LockedStairs,
+            Button,
+            Count
+        }
 
         public State(char inp, State? prev, Player p, List<Monster> m, List<Shade> sh, List<Statue> st)
         {
@@ -50,7 +85,6 @@ namespace Backend.States
             set { previus = value; }
         }
 
-        [MemberNotNull(nameof(tiles))]
         public void Tick()
         {
 

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Backend.Units
 {
-    internal class Monster : AbstractUnit
+    internal record class Monster : AbstractUnit
     {
     }
 }
